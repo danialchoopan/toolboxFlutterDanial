@@ -1,21 +1,28 @@
 import 'package:flutter/material.dart';
 
+/// Central color palette for the application.
+///
+/// Colors are inspired by Persian art and architecture:
+/// - Turquoise from Isfahan tiles
+/// - Persian Blue from traditional pottery
+/// - Rose from Persian carpet patterns
+/// - Saffron from Iranian cuisine
 class AppColors {
-  AppColors._();
+  AppColors._(); // Private constructor - utility class, no instantiation
 
-  // Persian Art Inspired Palette
-  static const Color turquoise = Color(0xFF00BFA6);
-  static const Color persianBlue = Color(0xFF2979FF);
-  static const Color rose = Color(0xFFFF1744);
-  static const Color saffron = Color(0xFFFFD600);
-  static const Color lapis = Color(0xFF304FFE);
-  static const Color mint = Color(0xFF00E676);
-  static const Color coral = Color(0xFFFF6E40);
-  static const Color lavender = Color(0xFFE040FB);
-  static const Color sky = Color(0xFF00B0FF);
-  static const Color peach = Color(0xFFFFAB91);
+  // ─── Persian Art Inspired Primary Palette ───
+  static const Color turquoise = Color(0xFF00BFA6);    // Primary brand color
+  static const Color persianBlue = Color(0xFF2979FF);   // Secondary accent
+  static const Color rose = Color(0xFFFF1744);          // Error/destructive actions
+  static const Color saffron = Color(0xFFFFD600);       // Warning/highlights
+  static const Color lapis = Color(0xFF304FFE);         // Deep accent
+  static const Color mint = Color(0xFF00E676);          // Success/positive
+  static const Color coral = Color(0xFFFF6E40);         // Warm accent
+  static const Color lavender = Color(0xFFE040FB);      // Creative tools
+  static const Color sky = Color(0xFF00B0FF);           // Info/neutral
+  static const Color peach = Color(0xFFFFAB91);         // Soft accent
 
-  // Gradient Presets
+  // ─── Gradient Presets (used for buttons, cards, headers) ───
   static const LinearGradient turquoiseGradient = LinearGradient(
     colors: [Color(0xFF00BFA6), Color(0xFF00897B)],
     begin: Alignment.topLeft,
@@ -64,7 +71,7 @@ class AppColors {
     end: Alignment.bottomRight,
   );
 
-  // Light Theme
+  // ─── Light Theme Colors ───
   static const Color lightBackground = Color(0xFFF8F9FA);
   static const Color lightSurface = Color(0xFFFFFFFF);
   static const Color lightCard = Color(0xFFFFFFFF);
@@ -73,7 +80,7 @@ class AppColors {
   static const Color lightDivider = Color(0xFFE9ECEF);
   static const Color lightScaffold = Color(0xFFF5F6FA);
 
-  // Dark Theme
+  // ─── Dark Theme Colors ───
   static const Color darkBackground = Color(0xFF0D1117);
   static const Color darkSurface = Color(0xFF161B22);
   static const Color darkCard = Color(0xFF21262D);
@@ -82,7 +89,7 @@ class AppColors {
   static const Color darkDivider = Color(0xFF30363D);
   static const Color darkScaffold = Color(0xFF0D1117);
 
-  // Category Colors
+  // ─── Category-specific Colors (used for tool icons and accents) ───
   static const Color textToolsColor = Color(0xFF58A6FF);
   static const Color fileToolsColor = Color(0xFF3FB950);
   static const Color calcToolsColor = Color(0xFFF0883E);
@@ -90,7 +97,7 @@ class AppColors {
   static const Color healthToolsColor = Color(0xFFF85149);
   static const Color funToolsColor = Color(0xFF39D2C0);
 
-  // Glassmorphism
+  // ─── Glassmorphism Support (semi-transparent for overlay effects) ───
   static Color glassWhite = Colors.white.withOpacity(0.15);
   static Color glassDark = Colors.black.withOpacity(0.25);
 }
