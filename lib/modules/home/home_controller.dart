@@ -60,6 +60,22 @@ class HomeController extends GetxController {
 
       // Fun Tools
       {'title': 'عدد تصادفی', 'icon': Icons.casino, 'color': AppColors.funToolsColor, 'route': AppRoutes.randomNumber, 'category': 'fun'},
+
+      // Sensor Tools
+      {'title': 'شتاب‌سنج', 'icon': Icons.speed, 'color': AppColors.mint, 'route': AppRoutes.accelerometer, 'category': 'sensor'},
+      {'title': 'ژیروسکوپ', 'icon': Icons.screen_rotation, 'color': AppColors.sky, 'route': AppRoutes.gyroscope, 'category': 'sensor'},
+      {'title': 'فشارسنج', 'icon': Icons.thermostat, 'color': AppColors.coral, 'route': AppRoutes.barometer, 'category': 'sensor'},
+
+      // Productivity Tools
+      {'title': 'پومودورو', 'icon': Icons.play_circle, 'color': AppColors.rose, 'route': AppRoutes.pomodoro, 'category': 'productivity'},
+      {'title': 'لیست کارها', 'icon': Icons.checklist, 'color': AppColors.turquoise, 'route': AppRoutes.todoList, 'category': 'productivity'},
+      {'title': 'یادداشت‌ها', 'icon': Icons.note, 'color': AppColors.saffron, 'route': AppRoutes.notes, 'category': 'productivity'},
+      {'title': 'ردیاب عادت', 'icon': Icons.repeat, 'color': AppColors.mint, 'route': AppRoutes.habitTracker, 'category': 'productivity'},
+      {'title': 'برنامه روزانه', 'icon': Icons.calendar_today, 'color': AppColors.persianBlue, 'route': AppRoutes.dailyPlanner, 'category': 'productivity'},
+      {'title': 'نویز سفید', 'icon': Icons.graphic_eq, 'color': AppColors.lavender, 'route': AppRoutes.whiteNoise, 'category': 'productivity'},
+      {'title': 'تایمر جلسه', 'icon': Icons.groups, 'color': AppColors.dailyToolsColor, 'route': AppRoutes.meetingTimer, 'category': 'productivity'},
+      {'title': 'تایمر ارائه', 'icon': Icons.slideshow, 'color': AppColors.coral, 'route': AppRoutes.presentationTimer, 'category': 'productivity'},
+      {'title': 'نقشه ذهنی', 'icon': Icons.device_hub, 'color': AppColors.oceanGradient.colors.first, 'route': AppRoutes.mindMap, 'category': 'productivity'},
     ];
   }
 

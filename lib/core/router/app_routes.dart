@@ -19,6 +19,18 @@ import '../../modules/tools/tip_calculator_screen.dart';
 import '../../modules/tools/random_number_screen.dart';
 import '../../modules/tools/flashlight_screen.dart';
 import '../../modules/tools/compass_screen.dart';
+import '../../modules/tools/accelerometer_screen.dart';
+import '../../modules/tools/gyroscope_screen.dart';
+import '../../modules/tools/barometer_screen.dart';
+import '../../modules/tools/pomodoro_screen.dart';
+import '../../modules/tools/todo_list_screen.dart';
+import '../../modules/tools/notes_screen.dart';
+import '../../modules/tools/habit_tracker_screen.dart';
+import '../../modules/tools/daily_planner_screen.dart';
+import '../../modules/tools/white_noise_screen.dart';
+import '../../modules/tools/meeting_timer_screen.dart';
+import '../../modules/tools/presentation_timer_screen.dart';
+import '../../modules/tools/mind_map_screen.dart';
 
 class AppRoutes {
   AppRoutes._();
@@ -49,10 +61,26 @@ class AppRoutes {
   static const String discountCalculator = '/discount-calculator';
   static const String tipCalculator = '/tip-calculator';
 
-  // Fun Tools
-  static const String randomNumber = '/random-number';
+  // Sensor Tools
   static const String flashlight = '/flashlight';
   static const String compass = '/compass';
+  static const String accelerometer = '/accelerometer';
+  static const String gyroscope = '/gyroscope';
+  static const String barometer = '/barometer';
+
+  // Fun Tools
+  static const String randomNumber = '/random-number';
+
+  // Productivity Tools
+  static const String pomodoro = '/pomodoro';
+  static const String todoList = '/todo-list';
+  static const String notes = '/notes';
+  static const String habitTracker = '/habit-tracker';
+  static const String dailyPlanner = '/daily-planner';
+  static const String whiteNoise = '/white-noise';
+  static const String meetingTimer = '/meeting-timer';
+  static const String presentationTimer = '/presentation-timer';
+  static const String mindMap = '/mind-map';
 
   static List<GetPage> routes = [
     GetPage(name: home, page: () => const HomeScreen()),
@@ -75,5 +103,17 @@ class AppRoutes {
     GetPage(name: randomNumber, page: () => const RandomNumberScreen()),
     GetPage(name: flashlight, page: () => const FlashlightScreen()),
     GetPage(name: compass, page: () => const CompassScreen()),
+    GetPage(name: accelerometer, page: () => const AccelerometerScreen()),
+    GetPage(name: gyroscope, page: () => const GyroscopeScreen()),
+    GetPage(name: barometer, page: () => const BarometerScreen()),
+    GetPage(name: pomodoro, page: () => const PomodoroScreen()),
+    GetPage(name: todoList, page: () => const TodoListScreen()),
+    GetPage(name: notes, page: () => const NotesScreen()),
+    GetPage(name: habitTracker, page: () => const HabitTrackerScreen()),
+    GetPage(name: dailyPlanner, page: () => const DailyPlannerScreen()),
+    GetPage(name: whiteNoise, page: () => const WhiteNoiseScreen()),
+    GetPage(name: meetingTimer, page: () => const MeetingTimerScreen()),
+    GetPage(name: presentationTimer, page: () => const PresentationTimerScreen()),
+    GetPage(name: mindMap, page: () => const MindMapScreen()),
   ];
 }
