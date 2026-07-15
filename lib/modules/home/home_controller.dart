@@ -85,6 +85,12 @@ class HomeController extends GetxController {
 
       // Network Tools
       {'title': 'ابزارهای شبکه', 'icon': Icons.wifi, 'color': AppColors.persianBlue, 'route': AppRoutes.networkTools, 'category': 'network'},
+
+      // Developer Tools
+      {'title': 'ابزارهای توسعه', 'icon': Icons.code, 'color': AppColors.mint, 'route': AppRoutes.devTools, 'category': 'dev'},
+
+      // Health & Fitness
+      {'title': 'سلامت و تناسب', 'icon': Icons.favorite, 'color': AppColors.rose, 'route': AppRoutes.healthDashboard, 'category': 'health'},
     ];
   }
 

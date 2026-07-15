@@ -40,6 +40,8 @@ import '../../modules/tools/hiit_timer_screen.dart';
 import '../../modules/tools/color_palette_screen.dart';
 import '../../modules/tools/egg_timer_screen.dart';
 import '../../modules/tools/sleep_timer_screen.dart';
+import '../../modules/tools/dev_tools_screen.dart';
+import '../../modules/tools/health_fitness_screen.dart';
 
 class AppRoutes {
   AppRoutes._();
@@ -85,6 +87,8 @@ class AppRoutes {
   static const String colorPalette = '/color-palette';
   static const String eggTimer = '/egg-timer';
   static const String sleepTimer = '/sleep-timer';
+  static const String devTools = '/dev-tools';
+  static const String healthDashboard = '/health-dashboard';
 
   static List<GetPage> routes = [
     GetPage(name: home, page: () => const HomeScreen()),
@@ -128,5 +132,7 @@ class AppRoutes {
     GetPage(name: colorPalette, page: () => const ColorPaletteScreen()),
     GetPage(name: eggTimer, page: () => const EggTimerScreen()),
     GetPage(name: sleepTimer, page: () => const SleepTimerScreen()),
+    GetPage(name: devTools, page: () => const DevToolsScreen()),
+    GetPage(name: healthDashboard, page: () => const HealthDashboardScreen()),
   ];
 }
