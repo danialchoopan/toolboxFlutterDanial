@@ -669,37 +669,53 @@ class _MobileLayout extends StatelessWidget {
             child: Obx(() => Text('ابزارها (${controller.filteredTools.length})', style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold))),
           ),
         ),
+        // Tools grid - wrapped in Obx for reactive updates
         SliverPadding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
-          sliver: SliverGrid(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4, mainAxisSpacing: 12, crossAxisSpacing: 12, childAspectRatio: 0.85),
-            delegate: SliverChildBuilderDelegate(
-              (context, index) {
-                final tool = controller.filteredTools[index];
-                final color = tool['color'] as Color;
-                return GestureDetector(
-                  onTap: () => Get.toNamed(tool['route']),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: isDark ? AppColors.darkCard : Colors.white,
-                      borderRadius: BorderRadius.circular(12),
-                      boxShadow: [BoxShadow(color: color.withOpacity(0.1), blurRadius: 6, offset: const Offset(0, 3))],
-                    ),
-                    child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-                      Container(
-                        padding: const EdgeInsets.all(8),
-                        decoration: BoxDecoration(color: color.withOpacity(0.1), shape: BoxShape.circle),
-                        child: Icon(tool['icon'] as IconData, color: color, size: 22),
+          sliver: Obx(() {
+            final filtered = controller.filteredTools;
+            if (filtered.isEmpty) {
+              return SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.all(32),
+                  child: Center(child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+                    Icon(Icons.search_off, size: 60, color: Colors.grey[300]),
+                    const SizedBox(height: 12),
+                    Text('ابزاری یافت نشد', style: TextStyle(color: Colors.grey[500])),
+                  ])),
+                ),
+              );
+            }
+            return SliverGrid(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4, mainAxisSpacing: 12, crossAxisSpacing: 12, childAspectRatio: 0.85),
+              delegate: SliverChildBuilderDelegate(
+                (context, index) {
+                  final tool = filtered[index];
+                  final color = tool['color'] as Color;
+                  return GestureDetector(
+                    onTap: () => Get.toNamed(tool['route']),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: isDark ? AppColors.darkCard : Colors.white,
+                        borderRadius: BorderRadius.circular(12),
+                        boxShadow: [BoxShadow(color: color.withOpacity(0.1), blurRadius: 6, offset: const Offset(0, 3))],
                       ),
-                      const SizedBox(height: 6),
-                      Text(tool['title'], style: const TextStyle(fontSize: 10, fontWeight: FontWeight.w500), textAlign: TextAlign.center, maxLines: 2, overflow: TextOverflow.ellipsis),
-                    ]),
-                  ),
-                );
-              },
-              childCount: tools.length,
-            ),
-          ),
+                      child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+                        Container(
+                          padding: const EdgeInsets.all(8),
+                          decoration: BoxDecoration(color: color.withOpacity(0.1), shape: BoxShape.circle),
+                          child: Icon(tool['icon'] as IconData, color: color, size: 22),
+                        ),
+                        const SizedBox(height: 6),
+                        Text(tool['title'], style: const TextStyle(fontSize: 10, fontWeight: FontWeight.w500), textAlign: TextAlign.center, maxLines: 2, overflow: TextOverflow.ellipsis),
+                      ]),
+                    ),
+                  );
+                },
+                childCount: filtered.length,
+              ),
+            );
+          }),
         ),
         const SliverToBoxAdapter(child: SizedBox(height: 20)),
       ],
@@ -864,21 +880,25 @@ class _MobileLayout extends StatelessWidget {
       children: [
         const Text('تنظیمات', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
         const SizedBox(height: 24),
+        // Dark mode toggle - use Material to fix ListTile background warning
         Card(
-          child: Obx(() => SwitchListTile(
-            title: const Text('حالت تاریک'),
-            subtitle: Text(Get.find<ThemeController>().isDark ? 'فعال' : 'غیرفعال'),
-            value: Get.find<ThemeController>().isDark,
-            onChanged: (_) => Get.find<ThemeController>().toggleTheme(),
-            secondary: Icon(Get.find<ThemeController>().isDark ? Icons.dark_mode : Icons.light_mode, color: AppColors.turquoise),
-          )),
+          child: Material(
+            color: Colors.transparent,
+            child: Obx(() => SwitchListTile(
+              title: const Text('حالت تاریک'),
+              subtitle: Text(Get.find<ThemeController>().isDark ? 'فعال' : 'غیرفعال'),
+              value: Get.find<ThemeController>().isDark,
+              onChanged: (_) => Get.find<ThemeController>().toggleTheme(),
+              secondary: Icon(Get.find<ThemeController>().isDark ? Icons.dark_mode : Icons.light_mode, color: AppColors.turquoise),
+            )),
+          ),
         ),
         const SizedBox(height: 8),
-        Card(child: ListTile(leading: const Icon(Icons.language, color: AppColors.persianBlue), title: const Text('زبان برنامه'), subtitle: const Text('فارسی'))),
+        Card(child: Material(color: Colors.transparent, child: ListTile(leading: const Icon(Icons.language, color: AppColors.persianBlue), title: const Text('زبان برنامه'), subtitle: const Text('فارسی')))),
         const SizedBox(height: 8),
-        Card(child: ListTile(leading: const Icon(Icons.info_outline, color: AppColors.turquoise), title: const Text('نسخه برنامه'), subtitle: const Text('۱.۰.۰'))),
+        Card(child: Material(color: Colors.transparent, child: ListTile(leading: const Icon(Icons.info_outline, color: AppColors.turquoise), title: const Text('نسخه برنامه'), subtitle: const Text('۱.۰.۰')))),
         const SizedBox(height: 8),
-        Card(child: ListTile(leading: const Icon(Icons.code, color: AppColors.dailyToolsColor), title: const Text('ساخته شده با Flutter'))),
+        Card(child: Material(color: Colors.transparent, child: ListTile(leading: const Icon(Icons.code, color: AppColors.dailyToolsColor), title: const Text('ساخته شده با Flutter')))),
       ],
     );
   }
