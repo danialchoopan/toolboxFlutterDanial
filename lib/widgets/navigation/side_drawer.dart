@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../core/constants/app_colors.dart';
 import '../../core/router/app_routes.dart';
-import '../common/tool_card.dart';
 
 class SideDrawer extends StatelessWidget {
   const SideDrawer({super.key});

@@ -4,8 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 class AppTextStyles {
   AppTextStyles._();
 
-  static const String _fontFamily = 'Vazirmatn';
-
   static TextStyle _baseStyle({
     double fontSize = 14,
     FontWeight fontWeight = FontWeight.normal,

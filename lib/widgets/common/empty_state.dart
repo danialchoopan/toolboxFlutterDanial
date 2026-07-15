@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import '../../core/constants/app_colors.dart';
 
 class EmptyState extends StatelessWidget {

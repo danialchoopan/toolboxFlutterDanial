@@ -64,8 +64,6 @@ class PersianDate {
     'سی و یکم',
   ];
 
-  static const int _jalaliEpoch = 1948321;
-
   /// Convert Gregorian to Jalali
   static List<int> gregorianToJalali(int year, int month, int day) {
     final gy = year;
