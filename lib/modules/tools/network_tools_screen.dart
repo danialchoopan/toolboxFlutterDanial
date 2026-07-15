@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../../core/constants/app_colors.dart';
@@ -58,31 +59,15 @@ class IpAddressScreen extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(24),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          _infoCard('آدرس IP محلی', _getLocalIp()),
+          _infoCard('پلتفرم', kIsWeb ? 'Web' : 'Mobile/Desktop'),
           const SizedBox(height: 12),
-          _infoCard('پلتفرم', _getPlatform()),
-          const SizedBox(height: 12),
-          _infoCard('نسخه OS', _getOsVersion()),
+          _infoCard('نوع دستگاه', kIsWeb ? 'مرورگر' : 'موبایل/دسکتاپ'),
           const SizedBox(height: 24),
-          ElevatedButton.icon(onPressed: () {
-            Clipboard.setData(ClipboardData(text: _getLocalIp()));
-            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('کپی شد')));
-          }, icon: const Icon(Icons.copy), label: const Text('کپی آدرس IP')),
+          const Text('برای مشاهده آدرس IP واقعی، از ابزارهای شبکه استفاده کنید.', style: TextStyle(color: Colors.grey)),
         ]),
       ),
     );
   }
-
-  String _getLocalIp() {
-    try {
-      final interfaces = InternetAddress.loopbackIPv4;
-      return interfaces.address;
-    } catch (e) {}
-    return 'نامشخص';
-  }
-
-  String _getPlatform() => Platform.operatingSystem;
-  String _getOsVersion() => Platform.operatingSystemVersion;
 
   Widget _infoCard(String label, String value) {
     return Card(child: Padding(padding: const EdgeInsets.all(16), child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
@@ -99,10 +84,10 @@ class DeviceInfoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final info = [
-      {'label': 'پلتفرم', 'value': Platform.operatingSystem},
-      {'label': 'نسخه OS', 'value': Platform.operatingSystemVersion},
-      {'label': 'نام دستگاه', 'value': Platform.localHostname},
-      {'label': 'تعداد پردازنده', 'value': '${Platform.numberOfProcessors} هسته'},
+      {'label': 'پلتفرم', 'value': kIsWeb ? 'Web' : 'Mobile/Desktop'},
+      {'label': 'نوع دستگاه', 'value': kIsWeb ? 'مرورگر' : 'موبایل/دسکتاپ'},
+      {'label': 'نام اپلیکیشن', 'value': 'جعبه ابزار دانیال'},
+      {'label': 'نسخه', 'value': '۱.۰.۰'},
     ];
 
     return Scaffold(
@@ -111,9 +96,12 @@ class DeviceInfoScreen extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         itemCount: info.length,
         itemBuilder: (context, i) => Card(
-          child: ListTile(
-            title: Text(info[i]['label']!, style: const TextStyle(fontWeight: FontWeight.w500)),
-            trailing: Text(info[i]['value']!, style: const TextStyle(fontFamily: 'monospace', color: AppColors.turquoise)),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+              Text(info[i]['label']!, style: const TextStyle(fontWeight: FontWeight.w500)),
+              Text(info[i]['value']!, style: const TextStyle(fontFamily: 'monospace', color: AppColors.turquoise)),
+            ]),
           ),
         ),
       ),
@@ -187,7 +175,16 @@ class _DnsLookupScreenState extends State<DnsLookupScreen> {
           const SizedBox(height: 24),
           Expanded(child: ListView.builder(
             itemCount: _results.length,
-            itemBuilder: (context, i) => Card(child: ListTile(leading: const Icon(Icons.language), title: Text(_results[i], style: const TextStyle(fontFamily: 'monospace')))),
+            itemBuilder: (context, i) => Card(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                child: Row(children: [
+                  const Icon(Icons.language, color: AppColors.turquoise),
+                  const SizedBox(width: 12),
+                  Expanded(child: Text(_results[i], style: const TextStyle(fontFamily: 'monospace'))),
+                ]),
+              ),
+            ),
           )),
         ]),
       ),
@@ -230,7 +227,16 @@ class _PingScreenState extends State<PingScreen> {
           const SizedBox(height: 24),
           Expanded(child: ListView.builder(
             itemCount: _results.length,
-            itemBuilder: (context, i) => Card(child: ListTile(leading: Icon(Icons.check_circle, color: _results[i].contains('خطا') ? Colors.red : Colors.green), title: Text(_results[i]))),
+            itemBuilder: (context, i) => Card(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                child: Row(children: [
+                  Icon(Icons.check_circle, color: _results[i].contains('خطا') ? Colors.red : Colors.green),
+                  const SizedBox(width: 12),
+                  Expanded(child: Text(_results[i])),
+                ]),
+              ),
+            ),
           )),
         ]),
       ),

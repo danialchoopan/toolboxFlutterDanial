@@ -17,12 +17,14 @@ class HomeController extends GetxController {
   // ─── Navigation State ───
   final currentTab = 0.obs;                    // Active bottom nav tab
   final searchQuery = ''.obs;                   // Current search query
+  final selectedCategory = 'all'.obs;           // Active category filter
   final searchController = TextEditingController(); // Search input controller
 
   // ─── Tool Registry ───
   final allTools = <Map<String, dynamic>>[].obs;      // All available tools
   final favoriteTools = <Map<String, dynamic>>[].obs;  // User's bookmarked tools
   final searchResults = <Map<String, dynamic>>[].obs;   // Filtered search results
+  final filteredTools = <Map<String, dynamic>>[].obs;   // Category-filtered tools
 
   @override
   void onInit() {
@@ -30,6 +32,8 @@ class HomeController extends GetxController {
     _initTools();           // Populate tool registry
     _loadFavorites();       // Load saved favorites from Hive
     ever(searchQuery, (_) => _filterTools()); // React to search changes
+    ever(selectedCategory, (_) => _filterTools()); // React to category changes
+    _filterTools(); // Initial filter
   }
 
   @override
@@ -137,17 +141,29 @@ class HomeController extends GetxController {
     _loadFavorites(); // Refresh the favorites list
   }
 
-  /// Filter tools based on the current search query.
+  /// Filter tools based on search query AND category.
   /// Uses case-insensitive Persian text matching.
   void _filterTools() {
     final query = searchQuery.value.toLowerCase();
-    if (query.isEmpty) {
-      searchResults.value = allTools;
-    } else {
-      searchResults.value = allTools.where((tool) {
+    final category = selectedCategory.value;
+
+    // Start with all tools
+    var result = allTools.toList();
+
+    // Apply category filter
+    if (category != 'all') {
+      result = result.where((tool) => tool['category'] == category).toList();
+    }
+
+    // Apply search filter
+    if (query.isNotEmpty) {
+      result = result.where((tool) {
         final title = (tool['title'] as String).toLowerCase();
         return title.contains(query);
       }).toList();
     }
+
+    searchResults.value = result;
+    filteredTools.value = result;
   }
 }

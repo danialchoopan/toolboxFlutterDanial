@@ -569,6 +569,21 @@ class _MobileLayout extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final tools = controller.allTools;
 
+    // Category filter tabs
+    final categories = [
+      {'key': 'all', 'label': 'همه', 'icon': Icons.grid_view},
+      {'key': 'calc', 'label': 'محاسبه', 'icon': Icons.calculate},
+      {'key': 'text', 'label': 'متن', 'icon': Icons.text_fields},
+      {'key': 'daily', 'label': 'روزانه', 'icon': Icons.access_time},
+      {'key': 'health', 'label': 'سلامت', 'icon': Icons.favorite},
+      {'key': 'productivity', 'label': 'بهره‌وری', 'icon': Icons.trending_up},
+      {'key': 'creative', 'label': 'خلاقیت', 'icon': Icons.palette},
+      {'key': 'timer', 'label': 'تایمر', 'icon': Icons.timer},
+      {'key': 'fun', 'label': 'سرگرمی', 'icon': Icons.games},
+      {'key': 'dev', 'label': 'توسعه', 'icon': Icons.code},
+      {'key': 'network', 'label': 'شبکه', 'icon': Icons.wifi},
+    ];
+
     return CustomScrollView(
       slivers: [
         SliverAppBar(
@@ -613,6 +628,35 @@ class _MobileLayout extends StatelessWidget {
             ),
           ),
         ),
+        // Category filter tabs
+        SliverToBoxAdapter(
+          child: SizedBox(
+            height: 50,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              itemCount: categories.length,
+              itemBuilder: (context, index) {
+                final cat = categories[index];
+                final isSelected = controller.selectedCategory.value == cat['key'];
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 4),
+                  child: FilterChip(
+                    label: Row(mainAxisSize: MainAxisSize.min, children: [
+                      Icon(cat['icon'] as IconData, size: 16, color: isSelected ? Colors.white : AppColors.turquoise),
+                      const SizedBox(width: 4),
+                      Text(cat['label'] as String),
+                    ]),
+                    selected: isSelected,
+                    onSelected: (_) => controller.selectedCategory.value = cat['key'] as String,
+                    selectedColor: AppColors.turquoise,
+                    labelStyle: TextStyle(color: isSelected ? Colors.white : AppColors.turquoise, fontSize: 12),
+                  ),
+                );
+              },
+            ),
+          ),
+        ),
         SliverToBoxAdapter(
           child: Padding(
             padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
@@ -622,7 +666,7 @@ class _MobileLayout extends StatelessWidget {
         SliverToBoxAdapter(
           child: Padding(
             padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
-            child: const Text('همه ابزارها', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            child: Obx(() => Text('ابزارها (${controller.filteredTools.length})', style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold))),
           ),
         ),
         SliverPadding(
@@ -631,7 +675,7 @@ class _MobileLayout extends StatelessWidget {
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4, mainAxisSpacing: 12, crossAxisSpacing: 12, childAspectRatio: 0.85),
             delegate: SliverChildBuilderDelegate(
               (context, index) {
-                final tool = tools[index];
+                final tool = controller.filteredTools[index];
                 final color = tool['color'] as Color;
                 return GestureDetector(
                   onTap: () => Get.toNamed(tool['route']),
