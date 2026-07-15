@@ -1,65 +1,206 @@
-# جعبه ابزار فارسی | Persian Toolbox
+# جعبه ابزار دانیال
 
-An all-in-one utility toolbox application built with Flutter, featuring a fully localized Persian (Farsi) user interface with RTL support.
+<div align="center">
+  <img src="screenshots/homeDash.png" alt="جعبه ابزار دانیال" width="800"/>
+</div>
+
+<br>
+
+یک اپلیکیشن جامع ابزارهای کاربردی با رابط کاربری کاملاً فارسی، ساخته شده با Flutter. این برنامه بیش از ۳۰ ابزار متنوع در دسته‌بندی‌های مختلف ارائه می‌دهد.
+
+## امکانات
+
+### ابزارهای محاسبه و تبدیل
+- ماشین حساب科学ی با اعداد فارسی
+- تبدیل واحد (طول، وزن، دما، حجم، مساحت، سرعت، داده، زمان، انرژی، توان، فشار، زاویه)
+- تبدیل ارز (دلار، یورو، پوند، درهم، لیر، یوان)
+- سازنده کد QR با رنگ‌های دلخواه
+- سازنده رمز عبور امن با نشانگر قدرت
+
+### ابزارهای متنی
+- ویرایشگر متن با شمارش کلمات و کاراکترها
+- شمارش کلمات
+
+### ابزارهای روزمره
+- انتخابگر رنگ با لغزنده‌های RGB
+- کرنومتر با پیگیری دورها
+- تایمر با زمان‌های از پیش تنظیم شده
+- ساعت جهانی برای چند شهر
+- چراغ قوه
+- قطب‌نما با رسم سفارشی
+
+### ابزارهای سلامت
+- ماشین حساب BMI با نمودار دسته‌بندی
+- محاسبه سن با تقویم جلالی
+- محاسبه تخفیف
+- محاسبه انعام با تقسیم صورت حساب
+
+### ابزارهای سنسور
+- شتاب‌سنج با نمایش سه‌بعدی
+- ژیروسکوپ با نمایش چرخش
+- فشارسنج با محاسبه ارتفاع
+
+### ابزارهای بهره‌وری
+- تایمر پومودورو با جلسات و استراحت
+- لیست کارها با دسته‌بندی و اولویت
+- یادداشت‌ها با برچسب‌ها
+- ردیاب عادت با رگه‌های هفتگی
+- برنامه روزانه ساعتی
+- تولیدکننده نویز سفید با ۱۲ صدا
+- تایمر جلسه با دستور کار
+- تایمر ارائه با نشانه‌های بصری
+- سازنده نقشه ذهنی
+
+### ابزارهای سرگرمی
+- تولیدکننده عدد تصادفی
+
+## ویژگی‌های فنی
+
+- رابط کاربری کاملاً فارسی با پشتیبانی RTL
+- طراحی واکنش‌گرا (موبایل، تبلت، دسکتاپ)
+- تم تاریک و روشن با ذخیره‌سازی پایدار
+- مدیریت state با GetX
+- ذخیره‌سازی محلی با Hive
+- تقویم جلالی
+- اعداد فارسی (۰-۹)
+- رنگ‌بندی الهام گرفته از هنر ایرانی
+
+## نصب و راه‌اندازی
+
+### پیش‌نیازها
+- Flutter SDK 3.44.6 یا بالاتر
+- Dart SDK 3.12.2 یا بالاتر
+
+### مراحل نصب
+```bash
+# کلون کردن مخزن
+git clone https://github.com/danialchoopan/toolboxFlutterDanial.git
+
+# رفتن به پروژه
+cd toolboxFlutterDanial
+
+# نصب وابستگی‌ها
+flutter pub get
+
+# اجرای برنامه
+flutter run
+```
+
+### پیکربندی پروکسی (در صورت نیاز)
+```bash
+export http_proxy=http://127.0.0.1:2080
+export https_proxy=http://127.0.0.1:2080
+flutter pub get
+```
+
+## ساختار پروژه
+
+```
+lib/
+├── main.dart                    # نقطه ورود برنامه
+├── core/
+│   ├── constants/               # رنگ‌ها، ابعاد، سبک‌های متن
+│   ├── localization/            # ترجمه‌های فارسی، اعداد، تاریخ
+│   ├── router/                  # مسیرهای GetX
+│   ├── services/                # سرویس ذخیره‌سازی Hive
+│   └── theme/                   # تم‌های تاریک و روشن
+├── modules/
+│   ├── home/                    # صفحه اصلی و کنترلر
+│   ├── settings/                # صفحه تنظیمات
+│   └── tools/                   # تمام صفحات ابزارها
+└── widgets/
+    ├── common/                  # ویجت‌های قابل استفاده مجدد
+    └── navigation/              # نوار پایین و کشویی
+```
+
+## مجوز
+
+خصوصی - تمامی حقوق محفوظ است.
+
+---
+
+<br>
+
+# Danial's Toolbox
+
+<div align="center">
+  <img src="screenshots/homeDash.png" alt="Danial's Toolbox" width="800"/>
+</div>
+
+<br>
+
+A comprehensive utility toolbox application with a fully localized Persian (Farsi) UI, built with Flutter. The app provides 30+ tools across various categories.
 
 ## Features
 
-### Implemented Tools
+### Calculator & Conversion Tools
+- Scientific calculator with Persian digits
+- Unit converter (length, weight, temperature, volume, area, speed, data, time, energy, power, pressure, angle)
+- Currency converter (USD, EUR, GBP, AED, TRY, CNY)
+- QR code generator with custom colors
+- Secure password generator with strength indicator
 
-| Category | Tool | Description |
-|----------|------|-------------|
-| Calculator & Conversion | ماشین حساب | Scientific calculator with Persian digits |
-| | تبدیل واحد | Unit converter (length, weight, temperature, volume, area, speed, data) |
-| | تبدیل ارز | Currency converter with mock rates |
-| | کد QR | QR code generator with color customization |
-| | رمزعبور | Password generator with strength indicator |
-| Text Tools | ویرایشگر متن | Text editor with word/character counter |
-| Daily Tools | انتخاب رنگ | Color picker with RGB sliders and presets |
-| | کرنومتر | Stopwatch with lap tracking |
-| | تایمر | Timer with presets and custom time |
-| | ساعت جهانی | World clock for multiple cities |
-| | چراغ قوه | Flashlight toggle |
-| | قطب‌نما | Compass with custom rendering |
-| Health Tools | BMI | BMI calculator with category visualization |
-| | محاسبه سن | Age calculator (Persian calendar) |
-| | تخفیف | Discount calculator |
-| | انعام | Tip calculator with bill splitting |
-| Fun Tools | عدد تادفی | Random number generator with history |
+### Text Tools
+- Text editor with word/character counter
+- Word counter
 
-### Core Features
+### Daily Utilities
+- Color picker with RGB sliders
+- Stopwatch with lap tracking
+- Timer with presets
+- World clock for multiple cities
+- Flashlight
+- Custom painted compass
 
-- **Persian RTL UI** - Complete right-to-left support
-- **Persian Numbers** - Native Persian digit display (۰-۹)
-- **Dark/Light Theme** - Toggle with persistent storage
-- **Bottom Navigation** - 5-tab navigation bar
-- **Side Drawer** - Quick access to tools
-- **Search** - Find tools quickly
-- **Favorites** - Bookmark frequently used tools
-- **Hive Storage** - Persistent settings and favorites
+### Health Tools
+- BMI calculator with category visualization
+- Age calculator with Persian calendar
+- Discount calculator
+- Tip calculator with bill splitting
 
-## Tech Stack
+### Sensor Tools
+- Accelerometer with 3D visualization
+- Gyroscope with rotation display
+- Barometer with altitude calculation
 
-- **Flutter** 3.44.6+
-- **GetX** - State management, routing, DI
-- **Hive** - Local storage
-- **Google Fonts** - Vazirmatn font
-- **QR Flutter** - QR code generation
+### Productivity Tools
+- Pomodoro timer with sessions and breaks
+- To-do list with categories and priorities
+- Notes with tags
+- Habit tracker with weekly streaks
+- Hourly daily planner
+- White noise generator with 12 sounds
+- Meeting timer with agenda
+- Presentation timer with visual cues
+- Mind map creator
+
+### Fun Tools
+- Random number generator
+
+## Technical Features
+
+- Fully Persian UI with RTL support
+- Responsive design (mobile, tablet, desktop)
+- Dark and Light themes with persistent storage
+- State management with GetX
+- Local storage with Hive
+- Persian calendar (Jalali)
+- Persian numerals (۰-۹)
+- Persian art-inspired color palette
 
 ## Getting Started
 
 ### Prerequisites
-
 - Flutter SDK 3.44.6 or higher
 - Dart SDK 3.12.2 or higher
 
 ### Installation
-
 ```bash
 # Clone the repository
-git clone https://github.com/your-repo/toolbox_persian.git
+git clone https://github.com/danialchoopan/toolboxFlutterDanial.git
 
 # Navigate to project
-cd toolbox_persian
+cd toolboxFlutterDanial
 
 # Install dependencies
 flutter pub get
@@ -69,14 +210,10 @@ flutter run
 ```
 
 ### Proxy Configuration (if needed)
-
-If you're behind a proxy:
-
 ```bash
 export http_proxy=http://127.0.0.1:2080
 export https_proxy=http://127.0.0.1:2080
 flutter pub get
-flutter run
 ```
 
 ## Project Structure
@@ -98,13 +235,6 @@ lib/
     ├── common/                  # Reusable widgets
     └── navigation/              # Bottom nav, drawer
 ```
-
-## Adding New Tools
-
-1. Create a new screen in `lib/modules/tools/`
-2. Add route in `lib/core/router/app_routes.dart`
-3. Register tool in `lib/modules/home/home_controller.dart`
-4. Add translations in `lib/core/localization/app_translations.dart`
 
 ## License
 
