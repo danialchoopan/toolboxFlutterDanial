@@ -37,7 +37,7 @@ class ToolboxApp extends StatelessWidget {
     final themeController = Get.put(ThemeController());
 
     return GetMaterialApp(
-      title: 'جعبه ابزار',
+      title: 'جعبه ابزار دانیال',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme(),
       darkTheme: AppTheme.darkTheme(),

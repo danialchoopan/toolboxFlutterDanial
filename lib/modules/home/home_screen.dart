@@ -100,14 +100,27 @@ class _DesktopLayout extends StatelessWidget {
 
   Widget _buildNavItem(BuildContext context, IconData icon, String label, int index, HomeController controller) {
     final isSelected = controller.currentTab.value == index;
-    return ListTile(
-      leading: Icon(icon, color: isSelected ? AppColors.turquoise : Colors.grey),
-      title: Text(label, style: TextStyle(fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal)),
-      selected: isSelected,
-      selectedTileColor: AppColors.turquoise.withOpacity(0.1),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      contentPadding: const EdgeInsets.symmetric(horizontal: 16),
-      onTap: () => controller.changeTab(index),
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        borderRadius: BorderRadius.circular(12),
+        onTap: () => controller.changeTab(index),
+        child: Container(
+          margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          decoration: BoxDecoration(
+            color: isSelected ? AppColors.turquoise.withOpacity(0.1) : Colors.transparent,
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Row(
+            children: [
+              Icon(icon, color: isSelected ? AppColors.turquoise : Colors.grey, size: 22),
+              const SizedBox(width: 12),
+              Text(label, style: TextStyle(fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal, color: isSelected ? AppColors.turquoise : null)),
+            ],
+          ),
+        ),
+      ),
     );
   }
 
